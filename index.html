@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Hello World</title>
+	<script src="./vue.js"></script>
+</head>
+<body>
+	<div id="app">{{content}}</div>
+
+	<div>{{content}}</div>
+
+	<script>
+		// 使用 DOM
+		// var dom = document.getElementById('app')
+		// dom.innerHTML = 'hellow world'
+		// 隔两秒替换 innerHTML 描述文字
+		// setTimeout(function() {
+		// 	dom.innerHTML = 'bye world'
+		// }, 2000)
+
+		// 使用 Vue.js
+		var app = new Vue({
+			el: '#app', // el: 让 Vue 实例，接管 id 为 APP 的标签
+			data: {
+				content: 'Hello world1'
+			}
+		})
+		// 隔两秒替换 content 内容
+		setTimeout(function() {
+			app.$data.content = 'bye world'
+		}, 2000)
+	</script>
+</body>
+</html>
