@@ -4,19 +4,19 @@
 	<meta charset="utf-8">
 	<title>TodoList</title>
 	<!-- 引入 vue.js 文件 -->
-	<script src="./vue.js"></script>
+	<script src="../vue.js"></script>
 </head>
 <body>
 	<div id="app">
         <!-- v-model : 数据的双向绑定 -->
 		<input type="text" v-model="inputValue" />
-        <!-- v-on ：绑定事件-->
+        <!-- v-on ：绑定事件，可简写为 @click -->
 		<button v-on:click="handelBtnClick">提交</button>
 		<ul>
             <!-- v-for: 循环 list 里的数据，循环的每一项都放在 item 里面-->
 			<!--<li v-for="item in list">{{item}}</li>-->
             <!-- 使用组件 -->
-            <!-- v-bind: 向子组件传递数据  -->
+            <!-- v-bind: 向子组件传递数据，例：v-bind:content 可简写为 :content   -->
             <!-- v-bind:delete 可简写为 @delete, 这个 delete 是子组件向父组件传递的点击事件 -->
             <!-- (item, index) in list : item 指 数组内容，index 指 数组下标 -->
             <todo-item v-bind:content="item"
@@ -37,6 +37,7 @@
 
         // 局部组件
         var TodoItem = {
+          // props：接收父组件传递的值
           props: ['content', 'index'],
           template: "<li @click='handelItemClick'>{{content}}</li>",
           methods: {
@@ -63,7 +64,7 @@
             },
             // 子组件 click 事件
             handelItemDelete (index) {
-              // splice ：第一个参数是对应的下标的那个元素，第二个参数是对应下标元素的
+              // splice ：第一个参数是对应的下标的那个元素，第二个参数是对应下标元素的个数
               this.list.splice(index, 1)
             }
           }

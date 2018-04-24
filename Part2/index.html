@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue 实例</title>
+	<script src="../vue.js"></script>
+</head>
+<body>
+	<div id="root">
+		<!-- @click="handleClick" 可写成 v-bind:click="handleClick" -->
+		<div @click="handleClick">
+			<!-- 插值表达式 -->
+			{{message}}
+		</div>
+		<!-- 使用 子组件 -->
+		<item></item>
+	</div>
+
+	<script>
+
+		// 创建一个 Vue 子组件
+		Vue.component("item", {
+		  template: "<div>Hello Item</div>"
+		})
+
+		// Vue 项目是由很多小的组件所组成的（是由 Vue 的实例拼装组成的）
+		// 创建 Vue 实例： new Vue()
+		var vm = new Vue({
+			el: '#root', // 让 Vue 实例 接管 root DOM 的显示
+			data: { // data 存放数据
+			  message: 'Hello World'
+			},
+			methods: {
+        handleClick () {
+          alert('hello')
+        }
+			}
+		})
+	</script>
+</body>
+</html>
