@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>计算属性，方法与监听</title>
+	<script src="../vue.js"></script>
+</head>
+<body>
+
+	<div id="app">
+		<!-- 计算属性 -->
+		<div>
+			{{ fullName }}
+			{{ age }}
+		</div>
+		<!-- 方法 -->
+		<div>
+			{{ fullName1() }}
+			{{ age }}
+		</div>
+		<!-- 监听器 -->
+		<div>
+			{{ fullName2 }}
+			{{ age }}
+		</div>
+	</div>
+
+	<script>
+		var vm = new Vue({
+			el: "#app",
+			data: {
+			  firstName: '来来来',
+				lastName: '嘻嘻嘻',
+				fullName2: '来来来 嘻嘻嘻',
+				age: 30
+ 			},
+			// 计算属性
+			// 当计算属性依赖的变量没有发生任何改变的时候，计算属性不会再计算，而是保留之前的值
+			computed: {
+			  fullName () {
+			    console.log('计算属性')
+			    return this.firstName + " " + this.lastName
+			  }
+			},
+			// 使用方法实现计算属性
+			methods: {
+			  fullName1 () {
+			    console.log('方法')
+				  return this.firstName + ' ' + this.lastName
+			  }
+			},
+			// 监听器
+			watch: {
+			  firstName () {
+			    console.log('监听器')
+			    this.fullName2 = this.firstName + ' ' + this.lastName
+			  },
+				lastName () {
+			    console.log('监听器')
+			    this.fullName2 = this.firstName + ' ' + this.lastName
+				}
+			}
+		})
+	</script>
+</body>
+</html>

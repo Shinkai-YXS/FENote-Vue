@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue 的模板语法</title>
+	<script src="../vue.js"></script>
+</head>
+<body>
+
+	<!-- 以下三个模板语法都可以写 JS 表达式 -->
+	<div id="app">
+		<!-- 插值表达式 -->
+		<div>{{name + ' 😁'}}</div>
+		<!-- v-text -->
+		<div v-text="name + ' 嘻嘻'"></div>
+		<!-- v-html: 让 div InnerHTML 的内容和 name 做数据绑定 -->
+		<div v-html="name + ' 😝'"></div>
+	</div>
+
+	<script>
+		var vm = new Vue({
+			el: "#app",
+			data: {
+			  name: '<h1>哈哈哈哈</h1>'
+			}
+		})
+	</script>
+</body>
+</html>
