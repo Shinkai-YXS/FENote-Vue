@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue 中的条件渲染</title>
+	<script src="../vue.js"></script>
+</head>
+<body>
+
+	<div id="app">
+		<!-- v-if: 对象的 true 或者 false，决定了标签是否被真实的挂载到页面之上，若是 false，则不存在于 DOM 之上 -->
+		<!--<div v-if="show">哈哈哈</div>-->
+		<!--<div v-else>嘻嘻嘻</div>-->
+
+		<!-- v-if v-else-if v-else -->
+		<div v-if="show1 === 'a'">This is A</div>
+		<div v-else-if="show1 === 'b'">This is B</div>
+		<div v-else>This is Other</div>
+		<!-- v-show: 对象的 true 或者 false，决定了标签是否显示在页面之上，若是 false，则隐藏，存在于 DOM 之上 -->
+
+	</div>
+
+	<script>
+		let vm = new Vue({
+			el:'#app',
+			data: {
+			  show: false,
+				show1: 'a',
+			}
+		})
+	</script>
+
+</body>
+</html>

@@ -37,10 +37,22 @@
 			// 计算属性
 			// 当计算属性依赖的变量没有发生任何改变的时候，计算属性不会再计算，而是保留之前的值
 			computed: {
-			  fullName () {
-			    console.log('计算属性')
-			    return this.firstName + " " + this.lastName
-			  }
+			  // fullName () {
+			  //   console.log('计算属性')
+			  //   return this.firstName + " " + this.lastName
+			  // }
+
+				// 计算属性的 getter 和 setter
+				fullName: {
+			    // 取值时会执行
+			    get: function() {
+			      return this.firstName + " " + this.lastName
+			    },
+					// 设置值时会执行
+					set: function (value) {
+						console.log(value)
+          }
+				}
 			},
 			// 使用方法实现计算属性
 			methods: {

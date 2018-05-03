@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue中的样式绑定</title>
+	<script src="../vue.js"></script>
+	<style>
+		.activated {
+			color: green;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="app">
+		<!-- 方法一：借助 class 和对象的形式，叫做 class 的对象绑定 -->
+		<div @click="handleDivClick" :class="{activated: isActivated}">Hellow world</div>
+		<!-- 方法二： -->
+		<div @click="handleDivClick1" :class="[activated]">你好</div>
+		<!-- 方法三：内联样式 -->
+		<div :style="styleObj" @click="handleDivClick2">撒拉嘿呦</div>
+		<!-- 也可放数组：:style="[styleObj] 标识 div 的样式由数组里的对象所决定",可放多个对象 -->
+		<div :style="[styleObj, {fontSize:'50px'}]" @click="handleDivClick2">撒拉嘿呦</div>
+	</div>
+
+	<script>
+		var vm = new Vue({
+			el: '#app',
+			data: {
+			  // 方法一
+			  isActivated: false,
+        // 方法二
+        activated: "",
+				// 方法三
+				styleObj: {
+			    color: "black"
+				}
+			},
+			methods: {
+        // 方法一：class 的对象绑定
+        handleDivClick () {
+          this.isActivated = !this.isActivated
+        },
+			  // 方法二：
+        handleDivClick1 () {
+          this.activated = this.activated === "activated" ? "" : "activated"
+        },
+				// 方法三：
+        handleDivClick2 () {
+          this.styleObj.color = this.styleObj.color === "black" ? "red" : "black"
+        }
+			}
+		})
+	</script>
+
+</body>
+</html>
