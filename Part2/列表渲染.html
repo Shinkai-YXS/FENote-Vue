@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue 中的列表渲染</title>
+	<script src="../vue.js"></script>
+	<style>
+		.button-style {
+			background-color: darkgreen;
+			color: #fff;
+			height: 55px;
+			width: 100px;
+			line-height: 55px;
+			text-align: center;
+			border-bottom: 1px solid white;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="app">
+		<div v-for="(item, index) of list" :key="item.id">
+			{{item.text}} ---- {{index}}
+		</div>
+		<div class="button-style" @click="pop"> pop </div>
+		<div class="button-style" @click="push"> push </div>
+		<div class="button-style" @click="shift"> shift </div>
+		<div class="button-style" @click="unshift"> unshift </div>
+		<div class="button-style" @click="splice"> splice </div>
+		<div class="button-style" @click="sort"> sort </div>
+		<div class="button-style" @click="reverse"> reverse </div>
+		<div class="button-style" @click="czyy"> 数据引用 </div>
+		<div>
+			对象的循环
+			<div v-for="(item, key, index) of userInfo">
+				值：{{item}} --- 键：{{key}} -- 位置信息：{{index}}
+			</div>
+		</div>
+	</div>
+
+	<script>
+
+		var vm = new Vue({
+			el:"#app",
+			data: {
+        list: [{id: '001', text: 'one', number: 2},
+          {id: '002', text: 'two', number: 3},
+          {id: '003', text: 'three', number: 5}],
+				userInfo: {
+          name: 'Dell',
+					age: 24,
+					gender: 'male',
+					salary: 'secret'
+				}
+			},
+			methods: {
+        pop () {
+					// 删除最后一项
+					this.list.pop()
+        },
+				push () {
+					// 插入数据到数组的最后一项
+					this.list.push({id: '004', text: 'push方法', number: 6})
+				},
+				shift () {
+					// 删除数组的第一项
+					this.list.shift()
+				},
+				unshift () {
+					// 插入数据到数组的第一项
+					this.list.unshift({id: '005', text: 'unshift方法'})
+				},
+				splice () {
+					// 从小标为 1 开始，删除一条数据，同时往里增加一条数据
+					this.list.splice(1, 1, {id:'004', text: '从小标为 1 开始，删除一条数据，同时往里增加一条数据'})
+				},
+        sort () {
+
+
+        },
+        reverse () {
+					// 取反
+					this.list.reverse()
+        },
+				czyy () {
+          this.list = [
+	          {id: '001', text: '操作之后的数据1'},
+	          {id: '002', text: '操作之后的数据2'},
+	          {id: '003', text: '改变数据的引用地址，实现数据变化'}
+          ]
+				}
+			}
+		})
+
+    /*
+			Vue 中操作数组的方法：
+			pop: 删除数组最后一位
+			push：插入数据到数组的最后一项
+			shift: 删除数组的第一项
+			unshift：插入数据到数组的第一项
+			splice：截取数组
+			sort：对数组进行排序
+			reverse：对数组进行取反
+		*/
+	</script>
+
+</body>
+</html>
